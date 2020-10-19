@@ -5,10 +5,12 @@ import Person from "../components/Person/Person";
 import AddPerson from "../components/AddPerson/AddPerson";
 
 class Persons extends Component {
-  render() {
+    render() {
+       
     return (
       <div>
         <AddPerson personAdded={this.props.addPersonFunction} />
+
         {this.props.prs.map((person) => (
           <Person
             key={person.id}
@@ -28,7 +30,10 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPersonFunction: () => dispatch({ type: "ADD_PERSON" }),
+      
+    addPersonFunction: (name, age) =>
+      dispatch({ type: "ADD_PERSON", personData: { name: name, age: age } }),
+
     removePersonFunction: (id) =>
       dispatch({ type: "REMOVE_PERSON", personElId: id }),
   };
